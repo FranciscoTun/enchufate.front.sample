@@ -26,8 +26,8 @@ async function getPermitteeProfile(code) {
 }
 
 // NOTE: changes API_BASE to ENCHUFATE_API
-async function getCertificates(txHash) {
-  return fetch(`${window.ENCHUFATE_API}/certificates/get?tx_hash=${txHash}`, {
+async function getCertificates(certificateId) {
+  return fetch(`${window.ENCHUFATE_API}/certificates/get?certificate_id=${certificateId}`, {
     method: 'GET',
     headers: {
       "Content-type": "application/json; charset=UTF-8"

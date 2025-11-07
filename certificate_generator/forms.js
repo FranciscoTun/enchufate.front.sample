@@ -4,9 +4,9 @@ const message = "I want to proceed."
 let certificatesMockList
 let allCertificateUrls = [];
 
-const quantity = 100
+const quantity = 10
 const fixedData = {
-    "university_code": "institution_code_sample_009",
+    "university_code": "institution_code_sample_008",
 };
 
 async function importWallet() {
@@ -30,7 +30,6 @@ async function importWallet() {
         document.getElementById("id-certificate-generator-workspace").style.display = "block";
         certificatesMockList = window.generateFixtureMetadata(quantity, fixedData);
         document.getElementById('id-certificate-metadata-textarea').value = quantity
-        console.log(certificatesMockList)
     } catch (error) {
         alert('Wrong password or file');
         console.error(error);

@@ -179,7 +179,6 @@ async function loadAndShowLabData() {
 async function verifyData() {
   const errors = [];
 
-  console.log("data: ", data)
 
   if (data?.certificate?.status !== 'ACTIVE'){
     errors.push(`<span class="localized en"> <span class="text-danger"><i class="fa fa-times"></i> This certificate has been revoked.</span></span>`);
@@ -215,7 +214,6 @@ async function verifyData() {
   // additional check could be if this address has a permittee token directly on blockchain.
 
   const address = getGenoBankioAddressFromSignature(data);
-  console.log(address)
   if (!address && errors.length == 0) {
     errors.push(`<span class="localized en"><span class="text-danger"><i class="fa fa-times"></i> Certificate signature invalid.</span></span>`);
     errors.push(`<span class="localized zh"> <span class="text-danger"><i class="fa fa-times"></i>证书签名无效。</span></span>`);
@@ -275,9 +273,8 @@ async function verifyData() {
 async function loadData() {
   const splitUrl = location.href.split('#')
   if (splitUrl.length == 2) {
-    // console.log(splitUrl);
     data = await decodeCertificateUriData(splitUrl[1], taxonomy);
-    data["certificate"] = await getCertificates(data.platformData.txHash);
+    data["certificate"] = await getCertificates(data.platformData.cert_id);
     if (!data) {
       invalidDataError();
       return false;
@@ -315,7 +312,6 @@ async function generatePdf() {
     doc.fontSize(14).fillColor('black').text(value, 40, y + 13, { width: 330 });
   };
 
-  console.log("data", data)
 
   // Header
   doc.font(roboto);

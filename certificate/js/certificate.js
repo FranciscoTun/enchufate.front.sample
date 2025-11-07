@@ -33,7 +33,7 @@ async function decodeCertificateUriData(data, taxonomy) {
     let params = decodeURIComponent(data);
     if (params) {
       const values = params.split('|');
-      if (values.length != 16) {
+      if (values.length != 17) {
         return null;
       } else {
         let network = null;
@@ -46,7 +46,8 @@ async function decodeCertificateUriData(data, taxonomy) {
           txHash: values[10 + elements_added],
           signature: values[9 + elements_added],
           timestamp: new Date(parseInt(values[8 + elements_added])),
-          hash: ''
+          hash: '',
+          cert_id: values[16]
         };
         const permitteeRepresentation = {
           network,
@@ -86,7 +87,6 @@ function getPermitteeAddressFromSignature(data) {
   try {
     const msgHashBytesPermittee = ethers.utils.arrayify(data.permitteeSignature.claim);
     const pubKeyPermittee = ethers.utils.recoverPublicKey(msgHashBytesPermittee, data.permitteeSignature.signature);
-    console.log("permittee signature:", data.permitteeRepresentation.signature)
     return ethers.utils.computeAddress(pubKeyPermittee);
   } catch (e) {
     return null;
@@ -99,8 +99,6 @@ function getGenoBankioAddressFromSignature(data) {
     const msgHash = ethers.utils.hashMessage(serializedData);
     const msgHashBytes = ethers.utils.arrayify(msgHash);
     const pubKey = ethers.utils.recoverPublicKey(msgHashBytes, data.platformData.signature);
-    console.log("platform signature:", data.platformData.signature)
-
     return ethers.utils.computeAddress(pubKey);
   } catch (e) {
     console.log(e);
