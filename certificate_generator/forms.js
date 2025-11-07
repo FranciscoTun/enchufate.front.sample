@@ -1,13 +1,10 @@
 const permitteeSigner = new Wallet();
 const message = "I want to proceed."
 
-let certificatesMockList
+
 let allCertificateUrls = [];
 
-const quantity = 10
-const fixedData = {
-    "university_code": "institution_code_sample_008",
-};
+
 
 async function importWallet() {
     const fileInput = document.getElementById('id-keystore-file');
@@ -28,15 +25,30 @@ async function importWallet() {
         permitteeSigner.importWallet(walletData.private_key)
         document.getElementById("id-wallet-address").innerHTML = permitteeSigner.account.address
         document.getElementById("id-certificate-generator-workspace").style.display = "block";
-        certificatesMockList = window.generateFixtureMetadata(quantity, fixedData);
-        document.getElementById('id-certificate-metadata-textarea').value = quantity
+        
+        
     } catch (error) {
         alert('Wrong password or file');
         console.error(error);
     }
 }
 
+function generateMetadata(){
+    const fixedData = {
+        "university_code": getCookie('DOCXAUTH'),
+    };
+    let quantity = parseInt(document.getElementById('id-metadata-quantity-input').value)
+    if (quantity > 300){
+        quantity = 300
+        document.getElementById('id-metadata-quantity-input').value = 300
+    }
+    certificatesMockList = window.generateFixtureMetadata(quantity, fixedData);
+    document.getElementById('id-certificate-metadata-textarea').value = JSON.stringify(certificatesMockList, null, 4)
+}
+
 async function generateCertificateHandler() {
+    $("#id-url-result").hide()
+    const certificatesMockList = JSON.parse(document.getElementById('id-certificate-metadata-textarea').value )
     const start = performance.now();
     const batchSize = 300; 
     const totalCertificates = certificatesMockList.length;
@@ -71,6 +83,7 @@ async function generateCertificateHandler() {
 }
 
 function displayResults(certificateUrlList) {
+    $("#id-url-result").show()
     const resultDiv = document.getElementById("id-url-result");
     if (certificateUrlList.length === 0) {
         resultDiv.innerHTML = '<p>Certificates not created</p>';
@@ -143,6 +156,7 @@ async function getPermitteeRepresentationsList(metadataList) {
     const representationsList = await Promise.all(promisesList);
     return representationsList;
 }
+
 function selectNetwork(networkStr) {
     if (networkStr === "--local") {
         return Network.LOCAL;
@@ -153,4 +167,14 @@ function selectNetwork(networkStr) {
     } else {
         throw new Error("You must specify --local, --test or --production network");
     }
+}
+
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+        return parts.pop().split(';').shift();
+    }
+    return undefined;
 }
