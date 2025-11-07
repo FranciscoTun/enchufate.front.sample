@@ -1,0 +1,143 @@
+#demo-cert p {
+	color:#212529;
+}
+.icon-success {
+  float:left;
+  font-size:1.25rem;
+  margin:4px 4px 0 0 ;
+} 
+
+.watermark {
+  position: fixed;
+  opacity: 1;
+
+  background: url(../assets/demo.jpeg) repeat -16% ;
+  background-size: contain;
+  width: 100vw;
+
+  display: block;
+  height: 100%;
+}
+
+.vuelaseguro .label-bg {
+  background:#591831;
+  z-index: 100;
+  position: relative;
+}
+
+.vuelaseguro  h2 {
+  color:#000;
+  text-transform: uppercase;
+  margin:0;
+}
+.vuelaseguro .label-bg  h2 {
+  color:#fff;
+  text-align: center;
+}
+
+.vuelaseguro .patient-info {
+border:1px solid #591831;
+}
+
+.mw-80 {
+  max-width: 80%;
+}
+.nav-translation {
+	padding:0;
+	list-style:none;
+}
+.btn-translate {
+	cursor:pointer;
+	padding:8px 16px;
+	list-style:none;
+  text-transform: uppercase;
+}
+
+.nav-translation li.active {
+    font-weight:bold;
+    text-decoration: underline;
+ 
+}
+#carouselExampleFade {
+  display:block;
+}
+
+.container.passport-wide {
+  max-width: 1440px;
+}
+
+.datepicker--time-sliders:before {
+  content: 'Select Hour & Min';
+  display: block;
+  color: black;
+}
+.datepicker--cell.-selected-, .datepicker--cell.-selected-.-current- {
+  background:#307DF5;
+}
+.datepicker--time-row {
+  margin-bottom: 10px !important;
+  background: linear-gradient(to right,#307DF5,#307DF5) left 50%/100% 2px no-repeat;
+}
+.datepicker--time-row input[type=range] {
+  appearance:auto;
+  -webkit-appearance:auto;
+}
+.tx-primary {
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+.lottie-bar {
+	width:100%;
+	max-width: 154px;
+	margin:0 0;
+	z-index:0;
+	position:relative;
+	display:block;
+}
+
+.lottie-bar-2 {
+	width:100%;
+	max-width: 154px;
+	margin:0 auto;
+	z-index:0;
+	position:relative;
+	display:block;
+}
+
+.is-valid {
+  border-color: #28a745;
+}
+
+.is-invalid {
+  border-color: #dc3545;
+}
+#result #qrcode {
+	width: 100%;
+}
+#qrCode img {
+  width:100%  !important;
+  image-rendering: pixelated;
+}
+#validationResult p {
+  font-size: 14.4px;
+}
+/* button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: 100%;
+  max-width: 15em;
+  margin-top: 10px;
+} */
+
+@media screen and (max-width: 767px) {
+
+  .passport-wide .col-sm-6.col-md-2.float-right {
+    order:-1;
+  }
+}

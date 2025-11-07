@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GenoBank.io</title>
+  <!-- Bootstrap for page layout -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+  <!-- Font Awesome for icons (do NOT use a later version, onl 4.7 supports SRI) -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+  <div class="container mt-4 passport-wide">
+    <div id="watermark"></div>
+    <div class="row">
+      <div class="col-md-8">
+        <h2>Academic Certificate Issued on the Blockchain</h2>
+      </div>
+      <div class="col-md-4">
+        <ul class="nav-translation d-flex justify-content-md-end">
+          <li class="btn-translate" id="translate-en">en</li>
+          <li class="btn-translate" id="translate-es">es</li>
+          <li class="btn-translate" id="translate-zh">zh</li>
+          <li class="btn-translate" id="translate-pt">pt</li>
+          <!-- <li class="btn-translate" id="translate-tl">tl</li> -->
+
+        </ul>
+      </div>
+    </div>
+
+    <div id="loader" class="row">
+      <div class="col-sm-12">
+        <div id="validationResult" class="mt-2  ">
+          <p>
+            <span class="localized en">Validating</span>
+            <span class="localized zh">证实</span>
+            <span class="localized pt">Validando</span>
+            <span class="localized tl">मान्य करना</span>
+            <span class="localized es">Validando</span>
+          </p>
+
+          <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div id="resultOk">
+      <div class="row">
+        <div class="col-sm-6 col-md-7">
+          <div class="row">
+            <!-- <div class="col-sm-5 col-md-3">
+              <img src="" class="d-inline-block align-top " id="patientUriImage" alt="" loading="lazy" style="max-width: 100%;">
+            </div> -->
+            <div class="col-sm-7 col-md-9">
+              <p class="font-weight-light my-0">
+                <span class="localized en">Student Code</span>
+                <span class="localized zh">学号</span>
+                <span class="localized pt">Código de Estudante</span>
+                <span class="localized tl">विद्यार्थी कोड</span>
+                <span class="localized es">Código de Estudiante</span>
+              </p>
+              <p class="font-weight-bold lead" id="studentCode"></p>
+            </div>
+          </div>
+          <p class="font-weight-light my-0">
+            <span class="localized en">ID Document Hash</span>
+            <span class="localized zh">身份证哈希</span>
+            <span class="localized pt">Hash do Documento de Identidade</span>
+            <span class="localized tl">पहचान दस्तावेज़ हैश</span>
+            <span class="localized es">Hash del Documento de Identidad</span>
+          </p>
+          <p class="font-weight-bold lead" id="idDocumentHash"></p>
+
+          <p class="font-weight-light my-0">
+            <span class="localized en">Degree Program</span>
+            <span class="localized zh">学位课程</span>
+            <span class="localized pt">Programa de Graduação</span>
+            <span class="localized tl">डिग्री कार्यक्रम</span>
+            <span class="localized es">Nombre de Carrera</span>
+          </p>
+          <p class="font-weight-bold lead" id="degreeProgram"></p>
+
+          <p class="font-weight-light my-0">
+            <span class="localized en">Issue Date</span>
+            <span class="localized zh">签发日期</span>
+            <span class="localized pt">Data de Emissão</span>
+            <span class="localized tl">जारी करने की तिथि</span>
+            <span class="localized es">Fecha de Emisión</span>
+          </p>
+          <p class="font-weight-bold lead" id="issueDate"></p>
+
+          <p class="font-weight-light my-0">
+            <span class="localized en">Graduation Date</span>
+            <span class="localized zh">毕业日期</span>
+            <span class="localized pt">Data de Conclusão</span>
+            <span class="localized tl">स्नातक तिथि</span>
+            <span class="localized es">Fecha de Egreso</span>
+          </p>
+          <p class="font-weight-bold lead" id="graduationDate"></p>
+
+          <p class="font-weight-light my-0">
+            <span class="localized en">University Code</span>
+            <span class="localized zh">大学代码</span>
+            <span class="localized pt">Código da Universidade</span>
+            <span class="localized tl">विश्वविद्यालय कोड</span>
+            <span class="localized es">Código de la Universidad</span>
+          </p>
+          <p class="font-weight-bold lead" id="universityCode"></p>
+
+          <p class="font-weight-light my-0">
+            <span class="localized en">Diploma Number</span>
+            <span class="localized zh">文凭编号</span>
+            <span class="localized pt">Número do Diploma</span>
+            <span class="localized tl">डिप्लोमा संख्या</span>
+            <span class="localized es">Número de Diploma</span>
+          </p>
+          <p class="font-weight-bold lead" id="diplomaNumber"></p>
+
+          <p class="font-weight-light my-0">
+            <span class="localized en">Academic Degree</span>
+            <span class="localized zh">学位</span>
+            <span class="localized pt">Grau Acadêmico</span>
+            <span class="localized tl">शैक्षणिक डिग्री</span>
+            <span class="localized es">Grado Académico</span>
+          </p>
+          <p class="font-weight-bold lead" id="academicDegree"></p>
+
+          <p class="font-weight-light my-0">
+            <span class="localized en">Digital Diploma Hash</span>
+            <span class="localized zh">数字文凭哈希</span>
+            <span class="localized pt">Hash do Diploma Digital</span>
+            <span class="localized tl">डिजिटल डिप्लोमा हैश</span>
+            <span class="localized es">Hash del Diploma Digital</span>
+          </p>
+          <p class="font-weight-bold lead" id="digitalDiplomaHash"></p>
+
+          <p class="font-weight-light my-0">
+            <span class="localized en">Rector's Digital Signature</span>
+            <span class="localized zh">校长数字签名</span>
+            <span class="localized pt">Assinatura Digital do Reitor</span>
+            <span class="localized tl">रेक्टर का डिजिटल हस्ताक्षर</span>
+            <span class="localized es">Firma Digital del Rector</span>
+          </p>
+          <div class="font-weight-bold lead" id="rectorsSignature"></div>
+
+          <p class="font-weight-light my-0">
+            <span class="localized en">Dean's Digital Signature</span>
+            <span class="localized zh">院长数字签名</span>
+            <span class="localized pt">Assinatura Digital do Decano</span>
+            <span class="localized tl">डीन का डिजिटल हस्ताक्षर</span>
+            <span class="localized es">Firma Digital del Decano</span>
+          </p>
+          <div class="font-weight-bold lead" id="deansSignature"></div>
+
+          <p class="font-weight-light my-0">
+            <span class="localized en">General Secretary's Digital Signature</span>
+            <span class="localized zh">秘书长数字签名</span>
+            <span class="localized pt">Assinatura Digital do Secretário-Geral</span>
+            <span class="localized tl">महासचिव का डिजिटल हस्ताक्षर</span>
+            <span class="localized es">Firma Digital del Secretario General</span>
+          </p>
+          <div class="font-weight-bold lead" id="generalSecretarySignature"></div>
+
+        </div>
+        <div class="col-sm-6 col-md-3 float-right">
+          <div id="logo" class="mt-4"></div>
+          <div id="qrCode" class="mt-3"></div>
+          <div id="carouselExampleFade" class="validate-success"  >
+            <div class="localized en"><span class="text-success"><i class="fa fa-check"></i> Genuine.</span> Scan to verify on GenoBank.io.</div>
+            <div class="localized zh"><span class="text-success"><i class="fa fa-check"></i> 真正。</span> 扫描以验证GenoBank.io。</div>
+            <div class="localized pt"><span class="text-success"><i class="fa fa-check"></i> Genuino.</span> Digitalize para verificar em GenoBank.io.</div>
+            <div class="localized tl"><span class="text-success"><i class="fa fa-check"></i> वास्तविक।</span> GenoBank.io पर सत्यापित करने के लिए स्कैन करें.</div>
+            <div class="localized es"><span class="text-success"><i class="fa fa-check"></i> Auténtico.</span> Escanee para verificar en GenoBank.io.</div>
+          </div>
+          <div id="download">
+            <button class="btn btn-primary w-100" onclick="generatePdf()">PDF</button>
+          </div>
+          <img src="https://enchufate.pe/wp-content/uploads/2024/04/AKDEMIC-13-1024x280.png" width="100%"
+            class="d-inline-block align-top mt-3" alt="" loading="lazy" style="background-color: #1E2A44;">
+        </div>
+
+      </div>
+
+      <!-- END ADDITIONS -->
+      <div class="col-sm-6 col-md-10">
+        <p class="font-weight-light mb-0">
+          <span class="localized en">Educational Institution</span>
+          <span class="localized zh">教育机构</span>
+          <span class="localized pt">Instituição Educacional</span>
+          <span class="localized tl">शैक्षिक संस्था</span>
+          <span class="localized es">Institución Educativa</span>
+        </p>
+
+        <p class="font-weight-bold lead " id="laboratory"></p>
+
+        <p class="font-weight-light mb-0">
+          <span class="localized en">Legal Representative</span>
+          <span class="localized zh">法定代表人</span>
+          <span class="localized pt">Representante Legal</span>
+          <span class="localized tl">कानूनी प्रतिनिधि</span>
+          <span class="localized es">Representante Legal</span>
+        </p>
+
+        <p class="font-weight-bold lead " id="legalRepresentative"></p>
+
+        <p class="font-weight-light mt-4 mb-1">
+          <span class="localized en">The Educational Institution / University / High School and its Legal Representative attest that all facts are true.</span>
+          <span class="localized zh">教育机构/大学/预科学校及其法定代表人证明所有事实均属实。</span>
+          <span class="localized pt">A Instituição Educacional / Universidade / Escola Preparatória e seu Representante Legal atestam que todos os fatos são verdadeiros.</span>
+          <span class="localized tl">शैक्षिक संस्था / विश्वविद्यालय / प्रिपरेटरी और उसका कानूनी प्रतिनिधि यह प्रमाणित करते हैं कि सभी तथ्य सत्य हैं।</span>
+          <span class="localized es">La Institución Educativa / Universidad / Preparatoria y su Representante Legal dan fe de que todos los hechos son ciertos.</span>
+        </p>
+        <p class="mt-0">
+          <code style="word-break: break-all" id="serializedData"> </code>
+        </p>
+ 
+        <hr>
+        <p class="font-weight-light my-0"><span class="localized en">Blockchain Transaction</span></p>
+        <p class="font-weight-light my-0"><span class="localized zh">区块链交易</span></p>
+        <p class="font-weight-light my-0"><span class="localized pt">Transação Blockchain</span></p>
+        <p class="font-weight-light my-0"><span class="localized tl">ब्लॉकचेन लेनदेन</span></p>
+        <p class="font-weight-light my-0"><span class="localized es">Transacción de Blockchain</span></p>
+        <hr>
+        <p id="tx"></p>
+      </div>
+  
+      <hr class="mt-3">
+
+      <p class="font-weight-light mt-4">
+        <span class="localized en">More information</span>
+        <span class="localized zh">更多信息</span>
+        <span class="localized pt">Mais informações</span>
+        <span class="localized tl">अधिक जानकारी</span>
+        <span class="localized es">Más información</span>
+      </p>
+      <ul>
+        <li><a href="https://genobank.io/certificates/more-information/us-cdc-passenger-disclosure.pdf">U.S. CDC
+            Passenger
+            Disclosure and Attestation to the United States of America</a></li>
+            <li class="localized zh"><a href="assets/lab-wall-poster-en.pdf" target="_blank">区块链实验室结果认证如何工作</a></li>
+            <li class="localized pt"><a href="assets/lab-wall-poster-en.pdf" target="_blank">Como funciona a certificação de resultados laboratoriais do Blockchain?</a></li>
+            <li class="localized tl"><a href="assets/lab-wall-poster-en.pdf" target="_blank">ब्लॉकचैन लैब रिजल्ट प्रमाणन कैसे काम करता है?</a></li>
+            <li class="localized es"><a href="assets/lab-wall-poster-es.pdf" target="_blank">¿Cómo Funciona La Certificación De Resultados De Blockchain Lab?</a></li>
+      </ul>
+
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="invalidData" data-backdrop="static">
+      <div class="modal-dialog modal-full mx-auto" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Invalid data.</h5>
+          </div>
+          <div class="modal-body justify-content-center text-center">
+            <h3>There is a problem with the data provided.</h3>
+            <img class="img-fluid rescan mx-auto my-4" src="img/scan.svg" alt="Re-Scan Kit">
+            <p class="mx-3 m">Please try again. But if this shows up again <a href="mailto:support@genobank.io">contact
+                our support</a> to help you or
+              visit <a href="http://genobank.io">GenoBank.io</a>.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <footer class="my-5">
+        <div class="container text-muted">
+          &copy; GenoBank.io
+        </div>
+      </footer>
+
+      <!-- jQuery for animation/AJAX -->
+      <script src="http://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <!-- lottie -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.0/lottie.min.js"
+        integrity="sha512-K0C1mRo24qjHQIipSMg5Rj4Gc2mqKgEcog7IKWy81pe3h+qJYoOXddVeYkUG+S9SAtMg4OfziI1KPc1xgNqarg=="
+        crossorigin="anonymous"></script>
+      <!-- Local scripts -->
+      <script src="../js/env.js"></script>
+      <!-- Local scripts -->
+      <script src="./js/verify-certificate-ui.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.js" integrity="sha256-8AdWdyRXkrETyAGla9NmgkYVlqw4MOHR6sJJmtFGAYQ=" crossorigin="anonymous"></script>
+      <script src="./js/api.js"></script>
+      <script src="./js/certificate.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/Genobank/genobankio-js@1.0.7/js/genobank.min.js" integrity="sha384-Oh/T2FOv2HxxKNJQCZO9IzazmdXlty/FGnT/s5kWICxjPuQLfpkRUfrpaIg/sqHZ" crossorigin="anonymous"></script>
+      <!-- <script src="./js/genobank.min.js" integrity="sha384-Oh/T2FOv2HxxKNJQCZO9IzazmdXlty/FGnT/s5kWICxjPuQLfpkRUfrpaIg/sqHZ" crossorigin="anonymous"></script> -->
+      <script src="./js/pdfkit.standalone.js"></script>
+      <script src="./js/blob-stream.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+      <!-- Ethers -->
+      <script src="https://cdn.jsdelivr.net/npm/ethers@5.1.3/dist/ethers.umd.min.js" integrity="sha256-IFgM5MfKES39pNVZVobfS04g4I7Ktr50+pey5vr6zjY=" crossorigin="anonymous"></script>
+      <!-- https://github.com/davidshimjs/qrcodejs -->
+      <script src="./js/qrcode.min.js"></script>
+
+</body>
+
+</html>
