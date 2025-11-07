@@ -2,8 +2,8 @@
  * Sets global configuration variables.
  */
 (function() {
-  window.NETWORK = '--local'
-  window.CERTIFICATE_VERIFIER_URL_BASE = 'http://localhost:5500/front/certificate/verify-academic-transcript.html#'
+  window.NETWORK = '--test'
+  window.CERTIFICATE_VERIFIER_URL_BASE = 'https://franciscotun.github.io/enchufate.front.sample/certificate/verify-academic-transcript.html#'
   const test = true;
 	window.test = test;
   window.ENV = test ? 'test' : 'main';
