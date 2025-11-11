@@ -1,0 +1,5 @@
+
+
+$(async function() {
+    await setInstitutionCookie(); 
+});
