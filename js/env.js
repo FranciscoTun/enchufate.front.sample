@@ -4,13 +4,13 @@
 (function() {
   window.NETWORK = '--test'
   // window.CERTIFICATE_VERIFIER_URL_BASE = 'https://franciscotun.github.io/enchufate.front.sample/certificate/verify-academic-transcript.html#'
-  window.CERTIFICATE_VERIFIER_URL_BASE = 'http://localhost:5500/certificate/verify-academic-transcript.html#'
+  window.CERTIFICATE_VERIFIER_URL_BASE = 'https://franciscotun.github.io/enchufate.front.sample/certificate/verify-academic-transcript.html#'
   const test = true;
 	window.test = test;
   window.ENV = test ? 'test' : 'main';
   // window.API_BASE = test ? 'https://api-test.genobank.io' : 'https://api.genobank.io';
   window.GENOBANK_ADDRESS = test ? '0x43e50610CD5580a1cfbd3B27fe4d95449068c5D8' : '0x633F5500A87C3DbB9c15f4D41eD5A33DacaF4184';  
-  window.ENCHUFATE_API = 'http://localhost:8081'
+  window.ENCHUFATE_API = 'http://44.204.91.39'
   window.MSG = "I want to proceed."
 })();
 
