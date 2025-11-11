@@ -10,7 +10,7 @@
   window.ENV = test ? 'test' : 'main';
   // window.API_BASE = test ? 'https://api-test.genobank.io' : 'https://api.genobank.io';
   window.GENOBANK_ADDRESS = test ? '0x43e50610CD5580a1cfbd3B27fe4d95449068c5D8' : '0x633F5500A87C3DbB9c15f4D41eD5A33DacaF4184';  
-  window.ENCHUFATE_API = 'http://44.204.91.39'
+  window.ENCHUFATE_API = 'https://enchufate-staging.duckdns.org'
   window.MSG = "I want to proceed."
 })();
 
