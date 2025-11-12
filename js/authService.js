@@ -1,24 +1,13 @@
-async function setInstitutionCookie() {
-    const url = `${window.ENCHUFATE_API}/institutions/setdocxauth`;
+await fetch(`${window.ENCHUFATE_API}/institutions/setdocxauth`, {
+  method: 'GET',
+  credentials: 'include'
+});
 
-    try {
-        const response = await fetch(url, {
-            method: 'GET',
-            credentials: 'include',
-        });
-
-        if (!response.ok) {
-            const err = await response.json();
-            throw err;
-        }
-
-        const data = await response.json();
-        console.log("Server response:", data);
-
-        return data;
-
-    } catch (error) {
-        console.error("Error:", error);
-        throw error;
-    }
+async function checkSession() {
+  const resp = await fetch(`${window.ENCHUFATE_API}/session/me`, {
+    method: 'GET',
+    credentials: 'include'
+  });
+  if (resp.ok) return await resp.json();
+  return null;
 }
