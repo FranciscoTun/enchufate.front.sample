@@ -81,7 +81,7 @@ async function createCertificateBatch(
 
 
 async function getMetaTx(permitteeAddress) {
-    const url = `${window.ENCHUFATE_API}/certificates/get_create_certificate_meta_tx`;
+    const url = `${window.ENCHUFATE_API}/certificates/get_certificate_meta_tx`;
     
     try {
         const response = await fetch(url, {

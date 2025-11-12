@@ -83,20 +83,42 @@ class Wallet {
         return ethers.getBytes(hexSig);
     }
 
-    async signMetaTransaction(contractAddress, proof, nonce) {
+    // async signMetaTransaction(contractAddress, proof, nonce) {
+    //     if (!this.account) {
+    //         throw new Error('No wallet loaded. Use importWallet first.');
+    //     }
+    //     const dataHash = ethers.keccak256(ethers.toUtf8Bytes(proof));
+    //     const messageHash = ethers.solidityPackedKeccak256(
+    //         ["address", "bytes32", "uint256"],
+    //         [contractAddress, dataHash, nonce]
+    //     );
+    //     const signatureHex = await this.account.signMessage(ethers.getBytes(messageHash));
+    //     return signatureHex;
+    // }
+
+    async signMetaTransaction(contractAddress, data, nonce) {
         if (!this.account) {
             throw new Error('No wallet loaded. Use importWallet first.');
         }
-
-        const dataHash = ethers.keccak256(ethers.toUtf8Bytes(proof));
-
+        let dataHash;
+        if (typeof data === 'string') {
+            if (data.startsWith('0x')) {
+                if (data.length === 66) {
+                    dataHash = data;
+                } else {
+                    dataHash = ethers.keccak256(data);
+                }
+            } else {
+                dataHash = ethers.keccak256(ethers.toUtf8Bytes(data));
+            }
+        } else {
+            throw new Error('Data must be a string (plain text, bytes or bytes32)');
+        }
         const messageHash = ethers.solidityPackedKeccak256(
             ["address", "bytes32", "uint256"],
             [contractAddress, dataHash, nonce]
         );
-
         const signatureHex = await this.account.signMessage(ethers.getBytes(messageHash));
-
         return signatureHex;
     }
     

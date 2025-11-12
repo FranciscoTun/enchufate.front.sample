@@ -37,6 +37,8 @@ function generateMetadata(){
     const fixedData = {
         "university_code": getCookie('DOCXAUTH'),
     };
+
+    console.log("fixed data", fixedData)
     let quantity = parseInt(document.getElementById('id-metadata-quantity-input').value)
     if (quantity > 300){
         quantity = 300
@@ -121,7 +123,7 @@ async function generateCertificateBatch(certificatesList) {
     });
     const metaTx = await getMetaTx(permitteeSigner.account.address, permitteeSignatureList);
     const metaTxSignature = await permitteeSigner.signMetaTransaction(
-        metaTx?.emmitter,
+        metaTx?.emitter,
         message,
         metaTx?.nonce
     );

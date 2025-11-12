@@ -1,5 +1,5 @@
 async function setInstitutionCookie() {
-    await fetch('https://api-enchufate-staging.duckdns.org/institutions/setdocxauth', {
+    await fetch(`${window.ENCHUFATE_API}/institutions/setdocxauth`, {
     method: 'GET',
     credentials: 'include'
     });
